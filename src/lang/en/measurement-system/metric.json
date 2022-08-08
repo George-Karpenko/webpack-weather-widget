@@ -1,0 +1,7 @@
+{
+  "speed": "m/s",
+  "distance": "km",
+  "degrees": "°C",
+  "percentages": "%",
+  "pressure": "hPa"
+}
