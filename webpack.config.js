@@ -14,9 +14,12 @@ const dist = path.resolve(__dirname, "dist");
 
 module.exports = (env, argv) => {
   const config = {
-    entry: "./src/main.ts",
+    entry: {
+      main: "./src/main.ts",
+    },
     output: {
-      path: dist,
+      path: path.resolve(__dirname, "dist"),
+      filename: "[name].js",
     },
 
     resolve: {
@@ -42,9 +45,11 @@ module.exports = (env, argv) => {
           parallel: true,
         },
       }),
-      new MiniCssExtractPlugin(),
-      new webpack.optimize.LimitChunkCountPlugin({
-        maxChunks: 1,
+      new MiniCssExtractPlugin({
+        attributes: {
+          id: "target",
+          "data-target": "example",
+        },
       }),
       new HtmlWebpackPlugin({
         template: "./index.html",
@@ -57,6 +62,9 @@ module.exports = (env, argv) => {
           path.join(__dirname, "./src/**/*.vue"),
           path.join(__dirname, "./src/**/*.js"),
         ]),
+      }),
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 1, // disable creating additional chunks
       }),
     ],
     module: {
@@ -88,7 +96,7 @@ module.exports = (env, argv) => {
                 importLoaders: 1,
                 modules: true,
                 modules: {
-                  localIdentName: "[name]__[local]__[hash:base64:5]",
+                  localIdentName: "[local]",
                 },
               },
             },
@@ -107,14 +115,14 @@ module.exports = (env, argv) => {
         {
           test: /\.scss$/,
           use: [
-            "vue-style-loader",
+            "style-loader",
             {
               loader: require.resolve("css-loader"),
               options: {
                 importLoaders: 1,
-                modules: true,
+                // modules: true,
                 modules: {
-                  localIdentName: "[name]__[local]__[hash:base64:5]",
+                  localIdentName: "[local]",
                 },
               },
             },
@@ -140,7 +148,7 @@ module.exports = (env, argv) => {
     },
     optimization: {
       minimize: true,
-      minimizer: [new TerserPlugin()],
+      minimizer: [new TerserPlugin(), "..."],
       splitChunks: {
         cacheGroups: {
           commons: {

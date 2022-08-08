@@ -3,4 +3,4 @@ import App from "./App.vue";
 
 import "./assets/style.scss";
 
-createApp(App).mount(document.getElementsByTagName("rer-rer")[0]);
+createApp(App).mount(document.getElementsByTagName("weather-widget")[0]);

@@ -1,26 +1,3 @@
-<!-- 
-    TODO
-  - 1) Валидация по стране
-  - 2) Валидация, если разбивается строка на 3 и более
-  - 3) Сделать модель City
-  - 4) symbol для DraggaleHandle
-  - 5) Компиляция css файлов в js
-  * 6) Придумать более лучшую реализацию удаления cb
-    7) минифицировать js
-  - 8) создать json с локализацией
-  - 9) исправить стили (опять использовать bootstrap, и иногда компоновать классы)
-  - 10) проверять и на местоположение тоже, даже если город уже есть
-  - 11) Типизация, использование Draggable 
-  * 12) v-model в app.vue
-  - 13) ApiError
-
-    14) Компоненты, который надо доработать:
-  -   --App.vue
-  -   --WeatherInCities.vue (Нужно сделать переключатель)
-  -   --TheSettings.vue (Вынести логику отдельных кусков кода и сделать компонент DraggableHandleCity.vue)
-  -   --CardCity.vue
-            -->
-
 <script setup lang="ts">
 import { ref, useCssModule } from "vue";
 import WeatherInCities from "./components/WeatherInCities.vue";
@@ -46,7 +23,7 @@ function settingsVisible(value: boolean) {
 </script>
 
 <template>
-  <main>
+  <main class="position-relative">
     <the-settings
       v-if="isSettingsVisible"
       @visible="settingsVisible"
