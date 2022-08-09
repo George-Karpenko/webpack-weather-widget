@@ -45,12 +45,7 @@ module.exports = (env, argv) => {
           parallel: true,
         },
       }),
-      new MiniCssExtractPlugin({
-        attributes: {
-          id: "target",
-          "data-target": "example",
-        },
-      }),
+      new MiniCssExtractPlugin(),
       new HtmlWebpackPlugin({
         template: "./index.html",
       }),
@@ -96,7 +91,7 @@ module.exports = (env, argv) => {
                 importLoaders: 1,
                 modules: true,
                 modules: {
-                  localIdentName: "[local]",
+                  localIdentName: "[name]_[local]_[hash:base64:5]",
                 },
               },
             },
@@ -104,9 +99,21 @@ module.exports = (env, argv) => {
               loader: "postcss-loader",
               options: {
                 postcssOptions: {
-                  plugins: () => {
-                    [require("autoprefixer")];
-                  },
+                  plugins: [
+                    [
+                      "autoprefixer",
+                      {
+                        // Options
+                      },
+                    ],
+                    [
+                      "postcss-prefix-selector",
+                      {
+                        prefix: "weather-widget",
+                        exclude: [':root'],
+                      },
+                    ],
+                  ],
                 },
               },
             },
@@ -115,12 +122,11 @@ module.exports = (env, argv) => {
         {
           test: /\.scss$/,
           use: [
+            // MiniCssExtractPlugin.loader,
             "style-loader",
             {
-              loader: require.resolve("css-loader"),
+              loader: "css-loader",
               options: {
-                importLoaders: 1,
-                // modules: true,
                 modules: {
                   localIdentName: "[local]",
                 },
@@ -129,10 +135,25 @@ module.exports = (env, argv) => {
             {
               loader: "postcss-loader",
               options: {
+                postcssOptions: {},
+              },
+              options: {
                 postcssOptions: {
-                  plugins: () => {
-                    [require("autoprefixer")];
-                  },
+                  plugins: [
+                    [
+                      "autoprefixer",
+                      {
+                        // Options
+                      },
+                    ],
+                    [
+                      "postcss-prefix-selector",
+                      {
+                        prefix: "weather-widget",
+                        exclude: [':root'],
+                      },
+                    ],
+                  ],
                 },
               },
             },

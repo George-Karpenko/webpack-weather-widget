@@ -36,7 +36,7 @@ function settingsVisible(value: boolean) {
       <weather-in-cities :cities="cities" />
       <icon-gear
         @click="settingsVisible(true)"
-        :class="app.close"
+        :class="app.icon_gear"
         class="position-absolute"
       />
     </template>
@@ -44,8 +44,8 @@ function settingsVisible(value: boolean) {
 </template>
 
 <style module="app">
-.close {
-  top: 12px;
+.icon_gear {
+  top: 9px;
   right: 16px;
 }
 </style>
