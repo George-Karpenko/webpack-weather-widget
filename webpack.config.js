@@ -135,9 +135,6 @@ module.exports = (env, argv) => {
             {
               loader: "postcss-loader",
               options: {
-                postcssOptions: {},
-              },
-              options: {
                 postcssOptions: {
                   plugins: [
                     [
