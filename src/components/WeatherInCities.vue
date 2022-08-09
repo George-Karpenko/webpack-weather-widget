@@ -12,7 +12,6 @@ defineProps<{
   <weather-in-city
     v-for="(city, index) in cities"
     :key="index"
-    :index="index"
     :city="city"
   />
 </template>

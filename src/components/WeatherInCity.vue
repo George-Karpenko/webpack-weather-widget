@@ -6,7 +6,6 @@ import type { City } from "../@types";
 
 defineProps<{
   city: City;
-  index: number;
 }>();
 </script>
 
