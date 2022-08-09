@@ -147,7 +147,7 @@ module.exports = (env, argv) => {
                       "postcss-prefix-selector",
                       {
                         prefix: "weather-widget",
-                        exclude: [':root'],
+                        exclude: [':root', 'body'],
                       },
                     ],
                   ],
