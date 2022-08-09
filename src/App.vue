@@ -45,7 +45,7 @@ function settingsVisible(value: boolean) {
 
 <style module="app">
 .icon_gear {
-  top: 9px;
-  right: 16px;
+  top: 13px;
+  right: 17px;
 }
 </style>
