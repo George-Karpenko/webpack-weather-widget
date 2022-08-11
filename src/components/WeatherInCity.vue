@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import cardLoading from "./cardLoading.vue";
-import cardError from "./cardError.vue";
+import CardLoading from "./CardLoading.vue";
+import CardError from "./CardError.vue";
 import CardCity from "./CardCity.vue";
 import type { City } from "../@types";
 
