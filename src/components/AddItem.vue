@@ -5,9 +5,6 @@ import IconArrowReturnLeft from "./icons/IconArrowReturnLeft.vue";
 
 const props = defineProps<{
   title: string;
-  placeholder: string;
-  ariaLabel: string;
-  ariaDescribedby: string;
   validations: { text: string; cb: (name: string) => boolean }[];
 }>();
 const emit = defineEmits<{
@@ -39,13 +36,11 @@ function addItem() {
       v-model="item"
       @keyup.enter="addItem"
       :class="{ 'is-invalid': errors.length }"
-      :placeholder="placeholder"
-      :aria-label="ariaLabel"
-      :aria-describedby="ariaDescribedby"
+      :="$attrs"
       type="text"
       class="form-control"
     />
-    <span @click="addItem" class="input-group-text" :id="ariaDescribedby">
+    <span @click="addItem" class="input-group-text">
       <icon-arrow-return-left />
     </span>
     <div class="invalid-feedback">
